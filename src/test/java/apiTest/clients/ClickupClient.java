@@ -3,61 +3,19 @@ package apiTest.clients;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.simple.JSONObject;
 
-import static apiTest.constants.ProjectConstants.API_KEY;
-import static apiTest.constants.ProjectConstants.API_TOKEN;
+import static apiTest.constants.ProjectConstants.*;
 
 public class ClickupClient {
-    public static Response getBoardInfo(String boardID){
+    public static Response createFolder(JSONObject obj) {
         return RestAssured
                 .given().log().all()
                 .contentType(ContentType.JSON)
-                .queryParam("key", API_KEY)
-                .queryParam("token", API_TOKEN)
+                .queryParam("Authorization", API_KEY)
+                .body(obj)
                 .when()
-                .get("https://api.trello.com/1/boards/" + boardID)
-                .then().log().all()
-                .statusCode(200)
-                .extract().response();
-    }
-    public static Response updateBoardInfo(String boardName, String boardID) {
-        return RestAssured
-                .given().log().all()
-                .contentType(ContentType.JSON)
-                .queryParam("key", API_KEY)
-                .queryParam("token", API_TOKEN)
-                .queryParam("name", boardName)
-                .when()
-                .put("https://api.trello.com/1/boards/" + boardID)
-                .then().log().all()
-                .statusCode(200)
-                .extract().response();
-    }
-
-    public static Response createList(String listName, String boardID) {
-        return RestAssured
-                .given().log().all()
-                .contentType(ContentType.JSON)
-                .queryParam("key", API_KEY)
-                .queryParam("token", API_TOKEN)
-                .queryParam("name", listName)
-                .queryParam("idBoard", boardID)
-                .when()
-                .post("https://api.trello.com/1/lists")
-                .then().log().all()
-                .statusCode(200)
-                .extract().response();
-    }
-
-    public static Response deleteList(String listID) {
-        return RestAssured
-                .given().log().all()
-                .contentType(ContentType.JSON)
-                .queryParam("key", API_KEY)
-                .queryParam("token", API_TOKEN)
-                .queryParam("value", true)
-                .when()
-                .put("https://api.trello.com/1/lists/" + listID + "/closed")
+                .get("https://api.clickup.com/api/v2/space/" + SPACE_ID + "/folder")
                 .then().log().all()
                 .statusCode(200)
                 .extract().response();
