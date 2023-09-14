@@ -51,10 +51,11 @@ public class ClickupClient {
         return RestAssured
                 .given().log().all()
                 .contentType(ContentType.JSON)
+                .header("Content-Type", "application/json")
                 .header("Authorization", API_KEY)
                 //.body(obj)
                 .when()
-                .post("https://api.clickup.com/api/v2/list/" + taskID + "/task")
+                .delete("https://api.clickup.com/api/v2/task/" + taskID)
                 .then().log().all()
                 .statusCode(200)
                 .extract().response();

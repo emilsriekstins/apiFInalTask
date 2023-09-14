@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 import org.json.simple.JSONObject;
+import org.junit.Test;
 
 import static apiTest.clients.ClickupClient.*;
 
@@ -59,5 +60,10 @@ public class ClickupSteps {
         Assertions.assertThat(task.getName())
                 .as("Test that the task was created with correct name")
                 .isEqualTo(taskName);
+    }
+
+    @Then("I delete the task previously created")
+    public void iDeleteTheTaskPreviouslyCreated() {
+        deleteTask(TestCaseContext.getTask().getId());
     }
 }
