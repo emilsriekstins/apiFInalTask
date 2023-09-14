@@ -15,7 +15,20 @@ public class ClickupClient {
                 .queryParam("Authorization", API_KEY)
                 .body(obj)
                 .when()
-                .get("https://api.clickup.com/api/v2/space/" + SPACE_ID + "/folder")
+                .post("https://api.clickup.com/api/v2/space/" + SPACE_ID + "/folder")
+                .then().log().all()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public static Response createList(JSONObject obj, String folderID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .queryParam("Authorization", API_KEY)
+                .body(obj)
+                .when()
+                .get("https://api.clickup.com/api/v2/folder/" + folderID + "/folder")
                 .then().log().all()
                 .statusCode(200)
                 .extract().response();

@@ -7,10 +7,10 @@ import lombok.Data;
 @Data // Whole class is going to be used to store data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class List {
-//    @JsonProperty("id")
-//    private String id;
-//    @JsonProperty("name")
-//    private String name;
-//    @JsonProperty("idBoard")
-//    private String boardID;
+    @JsonProperty("id")
+    private String id;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("folder.id")
+    private String folderID;
 }
