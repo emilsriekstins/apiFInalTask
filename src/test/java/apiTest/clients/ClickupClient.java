@@ -12,7 +12,7 @@ public class ClickupClient {
         return RestAssured
                 .given().log().all()
                 .contentType(ContentType.JSON)
-                .queryParam("Authorization", API_KEY)
+                .header("Authorization", API_KEY)
                 .body(obj)
                 .when()
                 .post("https://api.clickup.com/api/v2/space/" + SPACE_ID + "/folder")
@@ -25,10 +25,36 @@ public class ClickupClient {
         return RestAssured
                 .given().log().all()
                 .contentType(ContentType.JSON)
-                .queryParam("Authorization", API_KEY)
+                .header("Authorization", API_KEY)
                 .body(obj)
                 .when()
-                .get("https://api.clickup.com/api/v2/folder/" + folderID + "/folder")
+                .post("https://api.clickup.com/api/v2/folder/" + folderID + "/list")
+                .then().log().all()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public static Response createTask(JSONObject obj, String listID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .header("Authorization", API_KEY)
+                .body(obj)
+                .when()
+                .post("https://api.clickup.com/api/v2/list/" + listID + "/task")
+                .then().log().all()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public static Response deleteTask(String taskID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .header("Authorization", API_KEY)
+                //.body(obj)
+                .when()
+                .post("https://api.clickup.com/api/v2/list/" + taskID + "/task")
                 .then().log().all()
                 .statusCode(200)
                 .extract().response();

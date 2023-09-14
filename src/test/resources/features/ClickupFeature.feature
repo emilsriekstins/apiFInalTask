@@ -2,4 +2,5 @@
 
    Scenario: I test clickup API features
      Given I create clickup folder "New Folder"
-     Then I create new list in the folder with list name "New List"
+     Then I create new list "New List" in the folder
+     And I create new task "New Task" in list
