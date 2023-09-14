@@ -6,8 +6,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-import static apiTest.clients.TrelloClient.deleteList;
-import static apiTest.clients.TrelloClient.updateBoardInfo;
+import static apiTest.clients.ClickupClient.deleteList;
+import static apiTest.clients.ClickupClient.updateBoardInfo;
 import static apiTest.constants.ProjectConstants.BOARD_NAME;
 
 // Cleaning up the ...

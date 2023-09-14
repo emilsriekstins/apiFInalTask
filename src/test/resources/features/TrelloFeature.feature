@@ -1,7 +1,4 @@
- Feature: Trello API test feature
+ Feature: This feature will test clickup API
 
-   Scenario: Add new list to the test board after changing title
-     Given The board exists and contains the correct information
-     When I change the board title to "New Title"
-     And I check that the board name was updated to "New Title"
-     Then I add a list with a name "Example list" to the board
+   Scenario: create clickup folder
+     Given I create clickup folder

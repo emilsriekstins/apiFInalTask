@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 
-import static apiTest.clients.TrelloClient.*;
+import static apiTest.clients.ClickupClient.*;
 import static apiTest.constants.ProjectConstants.BOARD_ID;
 import static apiTest.constants.ProjectConstants.BOARD_NAME;
 

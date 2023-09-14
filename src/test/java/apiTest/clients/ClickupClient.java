@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import static apiTest.constants.ProjectConstants.API_KEY;
 import static apiTest.constants.ProjectConstants.API_TOKEN;
 
-public class TrelloClient {
+public class ClickupClient {
     public static Response getBoardInfo(String boardID){
         return RestAssured
                 .given().log().all()
