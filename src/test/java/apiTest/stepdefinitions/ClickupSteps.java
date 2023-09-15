@@ -10,12 +10,11 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
 import org.json.simple.JSONObject;
-import org.junit.Test;
 
 import static apiTest.clients.ClickupClient.*;
 
 public class ClickupSteps {
-    @Given("I create clickup folder {string}")
+    @Given("I create Clickup folder {string}")
     public void iCreateClickupFloder(String folderName) {
         JSONObject obj = new JSONObject();
         obj.put("name", folderName);
