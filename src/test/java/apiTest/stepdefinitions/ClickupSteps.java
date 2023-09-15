@@ -12,6 +12,7 @@ import org.assertj.core.api.Assertions;
 import org.json.simple.JSONObject;
 
 import static apiTest.clients.ClickupClient.*;
+import static apiTest.helpers.RandomUniqueCodeGenerator.generateRandomCode;
 
 public class ClickupSteps {
     @Given("I create Clickup folder {string}")
@@ -46,10 +47,12 @@ public class ClickupSteps {
                 .isEqualTo(TestCaseContext.getFolder().getId());
     }
 
-    @And("I create new task {string} in list")
-    public void iCreateNewTaskInList(String taskName) {
+    @And("I create new task in list")
+    public void iCreateNewTaskInList() {
         JSONObject obj = new JSONObject();
-        obj.put("name", taskName);
+        // Generate random task name
+        String randomName = generateRandomCode();
+        obj.put("name", randomName);
         Response response = createTask(obj, TestCaseContext.getList().getId());
 
         // Save task as object
@@ -58,7 +61,7 @@ public class ClickupSteps {
 
         Assertions.assertThat(task.getName())
                 .as("Test that the task was created with correct name")
-                .isEqualTo(taskName);
+                .isEqualTo(randomName);
     }
 
     @Then("I delete the task previously created")
