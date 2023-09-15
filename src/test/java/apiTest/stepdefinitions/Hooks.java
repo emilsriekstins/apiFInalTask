@@ -5,22 +5,23 @@ import apiTest.helpers.TestCaseContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.junit.Test;
 
-import static apiTest.clients.ClickupClient.deleteTask;
+import static apiTest.clients.ClickupClient.*;
 
 // Cleaning up the ...
 public class Hooks {
     @Before
     public void beforeHook(Scenario scenario) {
         TestCaseContext.init();
-        //TestCaseContext.setScenario(scenario);
+        TestCaseContext.setScenario(scenario);
         System.out.println("THE SCENARIO HAS STARTED");
     }
 
     @After
     public void afterHook() {
-        //deleteList(TestCaseContext.getList().getId());
-        //updateBoardInfo(BOARD_NAME, TestCaseContext.getBoard().getId());
+        deleteList(TestCaseContext.getList().getId());
+        deleteFolder(TestCaseContext.getFolder().getId());
         System.out.println("THE SCENARIO HAS ENDED");
     }
 }

@@ -66,4 +66,9 @@ public class ClickupSteps {
     public void iDeleteTheTaskPreviouslyCreated() {
         deleteTask(TestCaseContext.getTask().getId());
     }
+
+    @And("I check if the task was deleted")
+    public void iCheckIfTheTaskWasDeleted() {
+        checkIfTaskDoesntExist(TestCaseContext.getTask().getId());
+    }
 }

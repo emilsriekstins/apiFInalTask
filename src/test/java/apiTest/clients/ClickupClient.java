@@ -53,9 +53,45 @@ public class ClickupClient {
                 .contentType(ContentType.JSON)
                 .header("Content-Type", "application/json")
                 .header("Authorization", API_KEY)
-                //.body(obj)
                 .when()
                 .delete("https://api.clickup.com/api/v2/task/" + taskID)
+                .then().log().all()
+                .statusCode(204)
+                .extract().response();
+    }
+
+    public static Response checkIfTaskDoesntExist(String taskID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .header("Authorization", API_KEY)
+                .when()
+                .get("https://api.clickup.com/api/v2/task/" + taskID)
+                .then().log().all()
+                .statusCode(404)
+                .extract().response();
+    }
+
+    public static Response deleteList(String listID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .header("Content-Type", "application/json")
+                .header("Authorization", API_KEY)
+                .when()
+                .delete("https://api.clickup.com/api/v2/list/" + listID)
+                .then().log().all()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public static Response deleteFolder(String folderID) {
+        return RestAssured
+                .given().log().all()
+                .contentType(ContentType.JSON)
+                .header("Authorization", API_KEY)
+                .when()
+                .delete("https://api.clickup.com/api/v2/folder/" + folderID)
                 .then().log().all()
                 .statusCode(200)
                 .extract().response();
